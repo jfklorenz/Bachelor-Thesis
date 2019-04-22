@@ -1,0 +1,37 @@
+
+
+*******************************************************************************
+Sat Apr 13 14:33:19 2019
+
+
+FIT:    data read from "min_filter_fit_E_V_n_csv.csv" u 3:2
+        format = x:z
+        x range restricted to [512.000 : 1.04858e+06]
+        #datapoints = 12
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a / x + b
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 3.5396831197e-07   0.00e+00  1.84e-04    4.000000e-01   1.000000e-07
+   6 4.8386087739e-12  -5.09e-02  1.84e-10    1.363240e-01  -6.536609e-08
+
+After 6 iterations the fit converged.
+final sum of squares of residuals : 4.83861e-12
+rel. change during last iteration : -5.08702e-08
+
+degrees of freedom    (FIT_NDF)                        : 10
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 6.95601e-07
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.83861e-13
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.136324         +/- 0.0003561    (0.2612%)
+b               = -6.53661e-08     +/- 2.318e-07    (354.7%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.500  1.000 

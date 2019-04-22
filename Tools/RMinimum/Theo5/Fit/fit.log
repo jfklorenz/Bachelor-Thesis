@@ -1,0 +1,222 @@
+
+
+*******************************************************************************
+Sun Apr 14 18:13:51 2019
+
+
+FIT:    data read from "min_theo5_fit_ceil_csv.csv" u 4:3
+        format = x:z
+        x range restricted to [64.0000 : 1.04858e+06]
+        #datapoints = 15
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a * (log(x)/log(2)) / (log( log(x)/log(2)) / log(2)) + b
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 2.9467766663e+00   0.00e+00  1.75e+01    6.500000e+00  -8.500000e+00
+   4 4.5459212673e-01  -7.52e-03  1.75e-03    6.969270e+00  -9.908173e+00
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 0.454592
+rel. change during last iteration : -7.51636e-09
+
+degrees of freedom    (FIT_NDF)                        : 13
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.186999
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0349686
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 6.96927          +/- 0.06776      (0.9723%)
+b               = -9.90817         +/- 0.2419       (2.441%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.980  1.000 
+
+
+*******************************************************************************
+Sun Apr 14 18:14:13 2019
+
+
+FIT:    data read from "min_theo5_fit_floor_csv.csv" u 4:3
+        format = x:z
+        x range restricted to [64.0000 : 1.04858e+06]
+        #datapoints = 15
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a * (log(x)/log(2)) / (log( log(x)/log(2)) / log(2)) + b
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 1.4508816312e+02   0.00e+00  1.26e+01    5.000000e+00   1.000000e-03
+   8 2.2033867045e+00  -4.23e-04  1.26e-07    6.421040e+00  -7.884719e+00
+
+After 8 iterations the fit converged.
+final sum of squares of residuals : 2.20339
+rel. change during last iteration : -4.22998e-10
+
+degrees of freedom    (FIT_NDF)                        : 13
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.411693
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.169491
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 6.42104          +/- 0.1492       (2.323%)
+b               = -7.88472         +/- 0.5325       (6.754%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.980  1.000 
+
+
+*******************************************************************************
+Sun Apr 14 18:14:20 2019
+
+
+FIT:    data read from "min_theo5_fit_weigh_csv.csv" u 4:3
+        format = x:z
+        x range restricted to [64.0000 : 1.04858e+06]
+        #datapoints = 15
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a * (log(x)/log(2)) / (log( log(x)/log(2)) / log(2)) + b
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 1.5512880110e+02   0.00e+00  1.26e+01    5.000000e+00   1.000000e-03
+   8 1.3096147461e+00  -8.82e-04  1.26e-07    6.658544e+00  -8.776102e+00
+
+After 8 iterations the fit converged.
+final sum of squares of residuals : 1.30961
+rel. change during last iteration : -8.81662e-10
+
+degrees of freedom    (FIT_NDF)                        : 13
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.317395
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.10074
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 6.65854          +/- 0.115        (1.727%)
+b               = -8.7761          +/- 0.4105       (4.678%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.980  1.000 
+
+
+*******************************************************************************
+Sun Apr 14 18:14:46 2019
+
+
+FIT:    data read from "min_theo5_fit_ceil_csv.csv" u 4:6
+        format = x:z
+        x range restricted to [64.0000 : 1.04858e+06]
+        #datapoints = 15
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a * (log(x)/log(2)) / (log( log(x)/log(2)) / log(2)) + b
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 5.9308443247e+00   0.00e+00  1.75e+01    6.500000e+00  -8.500000e+00
+   4 8.4683412931e-01  -7.22e-03  1.75e-03    7.140290e+00  -1.037779e+01
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 0.846834
+rel. change during last iteration : -7.22014e-09
+
+degrees of freedom    (FIT_NDF)                        : 13
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.255228
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0651411
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 7.14029          +/- 0.09249      (1.295%)
+b               = -10.3778         +/- 0.3301       (3.181%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.980  1.000 
+
+
+*******************************************************************************
+Sun Apr 14 18:15:02 2019
+
+
+FIT:    data read from "min_theo5_fit_floor_csv.csv" u 4:6
+        format = x:z
+        x range restricted to [64.0000 : 1.04858e+06]
+        #datapoints = 15
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a * (log(x)/log(2)) / (log( log(x)/log(2)) / log(2)) + b
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 1.3567278615e+02   0.00e+00  1.26e+01    5.000000e+00   1.000000e-03
+   8 2.0025937895e+00  -8.99e-04  1.26e-07    7.438674e+00  -1.095576e+01
+
+After 8 iterations the fit converged.
+final sum of squares of residuals : 2.00259
+rel. change during last iteration : -8.98502e-10
+
+degrees of freedom    (FIT_NDF)                        : 13
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.392487
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.154046
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 7.43867          +/- 0.1422       (1.912%)
+b               = -10.9558         +/- 0.5077       (4.634%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.980  1.000 
+
+
+*******************************************************************************
+Sun Apr 14 18:15:11 2019
+
+
+FIT:    data read from "min_theo5_fit_weigh_csv.csv" u 4:6
+        format = x:z
+        x range restricted to [64.0000 : 1.04858e+06]
+        #datapoints = 15
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a * (log(x)/log(2)) / (log( log(x)/log(2)) / log(2)) + b
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 1.4509226592e+02   0.00e+00  1.26e+01    5.000000e+00   1.000000e-03
+   8 1.8967873060e+00  -9.35e-04  1.26e-07    7.371217e+00  -1.087932e+01
+
+After 8 iterations the fit converged.
+final sum of squares of residuals : 1.89679
+rel. change during last iteration : -9.35429e-10
+
+degrees of freedom    (FIT_NDF)                        : 13
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.381977
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.145907
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 7.37122          +/- 0.1384       (1.878%)
+b               = -10.8793         +/- 0.4941       (4.541%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.980  1.000 
