@@ -1,0 +1,91 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Analyse}	%	RMEDIAN - Analyse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\noindent
+Im diesem Abschnitt wird der Algorithmus \Rm im Gesamten und seine einzelnen Phasen theoretisch analysiert.\\
+Hierbei ist die Auswahl der diskutierten Bereiche und Theoreme auf die für diese Arbeit relevanten Aussagen eingeschränkt. Für weitere Informationen sei hier auf das Paper~\cite{meyer2} verwiesen.\\[.1cm]
+\noindent\makebox[\linewidth]{\color{gray}{\hdashrule[0.5ex]{\linewidth}{0.5pt}{1.5mm}}}\\[.05cm]
+% ---------------------------------------------------------------
+%	Phase 1
+\noindent
+\textbf{Phase 1.} In der ersten Phase des Algorithmus wird eine zufällige Teilmenge $S\subset X$ gebildet und mit dem \textit{AKS}-Algorithmus~\cite{aks} sortiert. Somit muss unterschieden werden, ob sich das Median Element zufällig in $S$ befindet oder nicht. Dies geschieht offensichtlich mit der Wahrscheinlichkeit $\mathbb{P}[med \in S]=|S| / |X| = k/n$.\\[.05cm]
+In diesem Fall benötigt der Algorithmus durch \textit{AKS} $\mO(k\log_2(k))$ Vergleiche, wovon neben weiteren nicht-Median Elementen nun auch das Median Element selbst betroffen ist.\\
+Andernfalls gilt dies nur für nicht-Median Elemente und insbesondere $f_{med}(n)=0$.\\[.1cm]
+\noindent\makebox[\linewidth]{\color{gray}{\hdashrule[0.5ex]{\linewidth}{0.5pt}{1.5mm}}}\\[.05cm]
+\textbf{Phase 2.} Die zweite Phase des Algorithmus filtert Elemente aus $X$, die als Median-Kandidat ausgeschlossen werden können. Des Weiteren ist festzustellen, dass sich das Median Element selbst am Ende der zweiten Phase definitiv in der Menge $C$ aller Median-Kandidaten befindet.\\
+Es ist zu bemerken, dass für das Median Element selbst eine Fallunterscheidung zutrifft. Hat sich das Median Element in der in Phase 1 ausgewählten Teilmenge $S$ befunden, so befindet es sich, bis auf sehr wenige in Phase 3 abgefangene Ausnahmen, bereits in der Menge $C$. Somit wird es im Laufe der zweiten Phase nicht weiter verglichen und es gilt $f_{med}(n)=0$. Befand sich der Median jedoch nach der ersten Phase nicht in der Menge $S$, so wird er mit je einem Element aus jedem Behälter $L_i$ und $R_i$ in $L$ oder $R$ verglichen, sodass gilt $f_{med}(n)=|L| + |R| = b + b = 2\cdot b$.\\[.05cm]
+Über die \fg aller übrigen Elemente lässt sich aufgrund der zufälligen Auswahl der Filter-Elemente keine Abschätzungen bilden.\\[.1cm]
+\noindent\makebox[\linewidth]{\color{gray}{\hdashrule[0.5ex]{\linewidth}{0.5pt}{1.5mm}}}\\[.05cm]
+\textbf{Phase 3.} Die dritte Phase des Algorithmus überprüft die Filterung der zweiten Phase und entscheidet anschließend, wie weiter verfahren wird. Wie in der ersten Phase findet auch hier kein Vergleich zwischen zwei Elementen statt. Anhand dessen wird entschieden, ob abgebrochen und der Median deterministisch bestimmt, die Menge mit dem \textit{AKS}-Algorithmus sortiert oder ein rekursiver Aufruf gestartet werden muss.\\[.1cm]
+\noindent\makebox[\linewidth]{\color{gray}{\hdashrule[0.5ex]{\linewidth}{0.5pt}{1.5mm}}}\\[.05cm]
+\textbf{RMedian.} Für den gesamten Algorithmus ist anzumerken, dass die Analyse für eine Eingabemenge $X$ der Größe $n\leq 2^{16}$ uninteressant ist. Dies liegt an der in Phase drei gegebenen Schranke für eine Sortierung mit dem \textit{AKS}-Algorithmus, denn für die entsprechende Ungleichung gilt $c \leq \log_2(n)^4$ $\forall c\leq n\leq 2^{16}$.\\[.1cm]
+\noindent\makebox[\linewidth]{\color{gray}{\hdashrule[0.5ex]{\linewidth}{0.5pt}{1.5mm}}}
+
+\begin{manuallemma}{26}\label{lem: med_26}
+Die erwartete \fg des Medians \fgM ist
+
+\[
+\mathbb{E}[f_{med}(n)]=\mathbb{E}\left[f_{med}(\mO(\sqrt{n\log(n)}))\right]+\mO(\underbrace{\frac{k}{n}}_{\text{Sampled}}+\underbrace{(1-\frac{k}{n})\log_d(k)}_{\text{Not sampled}}+\underbrace{1}_{\text{Misclassified}}).
+\]
+
+
+\end{manuallemma}
+
+\begin{manuallemma}{27}\label{lem: med_27}
+Die erwartete \fg aller nicht-Median Elemente \fgr ist
+
+\begin{center}
+\begin{tabular}{lcl}
+$\mathbb{E}[f_{rem}(n)]$&$=$&$\mathbb{E}\left[f_{rem}(\mO(\sqrt{n\log(n)}))\right]$\\
+&$+$&$\mO(\underbrace{\log(k)}_{\text{Sampled}}+\underbrace{\log_d(n)}_{\text{Not sampled}}+\max(\underbrace{d^2}_{\substack{\text{Pivot in }R_i \\ i>2}}, \underbrace{\frac{nd}{k}}_{\substack{\text{Pivot in } R_j\\ j\leq 2}})),$
+\end{tabular}
+\end{center}
+wobei $d(n)=\Omega(\log^{\varepsilon}(n))$ für ein $\varepsilon >0$ und $k(n)=\mO(n/\log(n))$.
+\end{manuallemma}
+
+
+\begin{manualtheorem}{28}\label{theo: med_28}
+\RM erreicht $\mathbb{E}[f_{med}(n)] = \mO(\log\log(n))$ und $\mathbb{E}[f_{rem}(n)]=\mO(\sqrt{n})$.
+\end{manualtheorem}
+\begin{proof}
+Wähle $k(n)=n^{\varepsilon}$, $d(n)=n^{\delta}$ mit $\varepsilon=2/3$, $\delta=1/12$. Nach Lemmata~\ref{lem: med_26} und ~\ref{lem: med_27} folgt:
+
+\begin{center}
+\begin{tabular}{lcl}
+$\mathbb{E}[f_{med}(n)]$& $=$&$\mathbb{E}\left[f_{med}(\mO(\sqrt{n \log(n)}))\right]+\mO(n^{\varepsilon - 1} \varepsilon \log(n) + \frac{\varepsilon}{\delta}=\mO(\log\log(n))$,\\
+$\mathbb{E}[f_{rem}(n)]$& $=$&$\mathbb{E}\left[f_{rem}(\mO(\sqrt{n \log(n)}))\right]+\mO((\varepsilon + \frac{1}{\delta})\log(n) + \max(2\delta, 1-\varepsilon + 2\delta))=\mO(\sqrt{n})$
+\end{tabular}
+\end{center}
+\end{proof}
+
+
+
+\begin{manualtheorem}{29}\label{theo: med_29}
+\RM erreicht $\mathbb{E}[f_{med}(n)] = \mO(\frac{\log(n)}{\log\log(n)})$ und $\mathbb{E}[f_{rem}(n)]=\mO(\log(n))$.
+\end{manualtheorem}
+\begin{proof}
+Wähle $k(n)=\frac{n}{\log^{\varepsilon}(n)}$, $d(n)=\log^{\delta}(n)$ mit $\varepsilon=\delta=1/3$. Nach Lemmata~\ref{lem: med_26} und ~\ref{lem: med_27} folgt:
+\begin{center}
+\begin{tabular}{lclcl}
+$\mathbb{E}[f_{med}(n)]$& $=$&$\mathbb{E}\left[f_{med}(\mO(\sqrt{n \log(n)}))\right]$& $+$&$\mO(\log^{1-\varepsilon}(n) + \log_{\log^4(n)}(n))=\mO(\frac{\log(n)}{\log\log(n)})$,\\
+$\mathbb{E}[f_{rem}(n)]$& $=$&$\mathbb{E}\left[f_{rem}(\mO(\sqrt{n \log(n)}))\right]$& $+$&$\mO(\log(n) + \max(\log^{2\delta}(n) + \log^{\varepsilon + \delta}(n))=\mO(\log(n))$
+\end{tabular}
+\end{center}
+
+\end{proof}
+
+
+
+\begin{manualtheorem}{30}\label{theo: med_30}
+Für $k=\mO(n/\log(n))$ und $d=\Omega(\log(n))$, \RM benötigt in Erwartung insgesamt $\mO(n)$ Vergleiche. Dies impliziert eine erwartete Arbeit $w(n)=\mO(n)$.
+\end{manualtheorem}
+
+\noindent\makebox[\linewidth]{\color{gray}{\hdashrule[0.5ex]{\linewidth}{0.5pt}{1.5mm}}}\\[.05cm]
+% ---------------------------------------------------------------
+%	Ende
+\noindent
+Die aufgeführten Theoreme und Lemmata dienen als Grundlage für den Analyseschwerpunkt und somit auch für die zugrunde liegende Implementierung. 
+
+

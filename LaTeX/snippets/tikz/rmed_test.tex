@@ -1,0 +1,36 @@
+\documentclass[border=10pt,tikz,multi]{standalone}
+\usetikzlibrary{arrows.meta,shapes.arrows,chains,decorations.pathreplacing}
+\begin{document}
+\newlength\myht
+\settoheight{\myht}{$n-2$}
+\tikzset{%
+  MyStyle/.style={draw, text width=25pt, text height=10pt, text centered,minimum height=\myht+2*2*1mm)},
+  myarrow/.style={shape=single arrow, rotate=90, inner sep=5pt, outer sep=0pt, single arrow head extend=0pt, minimum height=7.5pt, text width=0pt, draw=blue!50, fill=blue!25}
+}
+
+\begin{tikzpicture}[-{Stealth[length=2.5pt]}]
+  \begin{scope} [start chain, node distance=-.5pt]
+    \foreach \name [count=\xi] in {1,2,3,\cdots,k,\cdots,n-k, \cdots,
+      n-2,n-1,n}{ \node[MyStyle, on chain] (vlos\xi) {$\name$};}
+  \end{scope}
+  \node[above= 0.1cm of vlos1, xshift=-0.5cm]{$u_{los}$};
+
+  \draw [decorate,decoration={brace,amplitude=10pt,mirror}]
+  (vlos7.south west) -- (vlos11.south east) node[black,midway,below=8pt]
+  {Removed data};
+\end{tikzpicture}
+\begin{tikzpicture}[
+  -{Stealth[length=2.5pt]}
+  ]
+  \begin{scope} [start chain, node distance=-.5pt]
+    \foreach \name [count=\xi] in {1,2,3,\cdots,k,\cdots,n-k, \cdots,
+      n-2,n-1,n}{ \node[MyStyle, on chain] (vlos\xi) {$\name$};
+    }
+  \end{scope}
+  \node[above= 0.1cm of vlos1, xshift=-0.5cm]{$u_{bef}$};
+
+  \draw [decorate,decoration={brace,amplitude=10pt,mirror}]
+  (vlos1.south west) -- (vlos5.south east) node[black,midway,below=8pt]
+  {Removed data};
+\end{tikzpicture}
+\end{document}

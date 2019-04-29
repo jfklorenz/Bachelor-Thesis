@@ -1,0 +1,136 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{New Commands}	%	NEW COMMANDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{New Commands : Basic}
+%	Array Stretch
+\renewcommand{\arraystretch}{1.3}
+
+%	Other
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
+\SetCommentSty{mycommfont}
+
+%	Definition, Theorem, Korollar, Lemma
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Math
+\label{New Commands : Math}
+\newcommand{\cm}{\textcolor{greengreen}{\text{\ding{51}}}}	% Green Checkmark
+\newcommand{\xm}{\textcolor{red}{\text{\ding{55}}}}	% Red Xmark
+\newcommand{\mN}{\mathbb{N}}	% \mathbb{N}
+\newcommand{\mR}{\mathbb{R}}	% \mathbb{R}
+\newcommand{\mQ}{\mathbb{Q}}	% \mathbb{Q}
+\newcommand{\mC}{\mathbb{C}}	% \mathbb{C}
+\newcommand{\mbb}[1]{\mathbb{#1}}	% \mathbb{X}
+\newcommand{\mcal}[1]{\mathcal{#1}}	% \mathcal{X}
+
+\label{New Commands : Math - Functions}
+\newcommand{\mset}[1]{\left\{#1\right\}}			% Menge Input
+\newcommand{\mabs}[1]{\left|#1\right|}				% Betrag Input
+\newcommand{\mpoly}[3]{#1_{#3}#2^{#3} + \ldots + #1_1#2 + #1_0}	% Polynom Input
+\newcommand{\mto}[2]{#1,\ldots ,#2}					% x,...,y Input
+\newcommand{\minto}[2]{\in\{ #1,\ldots ,#2\}}		% \in\{x,...,y\}
+\newcommand{\msum}[3]{\sum\limits_{i=#1}^{#2} #3} 	% Summe Input
+\newcommand*{\mSum}[3]{\sum\limits_{i=#1}^{#2} #3} 	% Summe Input
+\newcommand{\mlim}[3]{\lim\limits_{#1\rightarrow #2} #3}	% Limes Input
+\newcommand*{\mLim}[3]{\lim\limits_{#1\rightarrow #2} #3}	% Limes Input
+
+%	QED
+\newcommand*{\qqed}{\hfill\ensuremath{\square}}	% QED
+\newcommand*{\qedb}{\hfill\ensuremath{\blacksquare}}	% QED
+
+%	Text above = and ~
+\newcommand{\eqtxt}[1]{\ensuremath{\stackrel{\text{#1}}{=}}}
+\newcommand{\aptxt}[1]{\ensuremath{\stackrel{\text{#1}}{\approx}}}
+
+\label{New Commands : Laufzeit}
+\newcommand{\mO}{\mathcal{O}}	% \mathcal{O}
+\newcommand{\mOf}[1]{\mathcal{O}(#1)}
+\newcommand{\mOn}{\mathcal{O}(n)}	% \mathcal{O}
+\newcommand{\mOnn}{\mathcal{O}(n^2)}	% \mathcal{O}
+\newcommand{\mOnnn}{\mathcal{O}(n^3)}	% \mathcal{O}
+\newcommand{\mOl}{\mathcal{O}(\log (n))}	% \mathcal{O}
+\newcommand{\mOnl}{\mathcal{O}(n\cdot \log (n))}	% \mathcal{O}
+\newcommand{\mT}{\Theta}	% \Theta
+\newcommand{\mOm}{\Omega}	% \Omega
+\newcommand{\mve}{\varepsilon}
+\newcommand{\mOi}[1]{\ensuremath{\mathop{}\mathopen{}\mathcal{O}\mathopen{}\left(#1\right)}}	% \mOi{X} -> \mathcal{O}(X)
+\newcommand{\Ra}{\Rightarrow }
+\newcommand{\ra}{\rightarrow }
+
+\label{New Commands : Brackets}
+\newcommand{\mbraa}[1]{\left(#1\right)} 	% encloses the argument using stretchable parentheses
+\newcommand{\mbrab}[1]{\left[#1\right]} 	% encloses the argument using stretchable square brackets
+\newcommand{\mbrac}[1]{\left\{#1\right\}}	% encloses the argument using stretchable curved brackets
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Text
+\label{New Commands : Rules}
+\newcommand{\myRule}[3][black]{\textcolor{#1}{\rule[2mm]{#2}{#3}}}
+\renewcommand{\dateseparator}{ -- }
+\newcommand{\nth}[1]{\begin{large}\textbf{#1}\end{large}\newline\noindent\myRule[gray]{\textwidth}{1pt}}
+
+\label{New Commands : Spaces}
+\newcommand{\va}{\vspace*{.1cm}}
+\newcommand{\vb}{\vspace*{.2cm}}
+\newcommand{\vc}{\vspace*{.3cm}}
+\newcommand{\vd}{\vspace*{.5cm}}
+\newcommand{\np}{\newpage}
+
+\label{New Commands : Tabular}
+\newcommand{\cca}{{\cellcolor{gray2!40!white}}}			% Subtitle
+\newcommand{\ccb}{{\cellcolor{gray2!60!white}}}			% Title
+\newcommand{\ccp}{{\cellcolor{greengreen!60!white}}}	% Positive Green
+\newcommand{\ccn}{{\cellcolor{redred!60!white}}}		% Negative Red
+\newcommand{\ccz}[1]{{\cellcolor{#1}}}					% Input
+\newcommand{\tc}[2]{\begin{center}\begin{tabular}{#1}#2\end{tabular}\end{center}}	% centered tabular
+
+\newcommand{\mMp}[1]{\begin{pmatrix} #1\end{pmatrix}}
+\newcommand{\mMs}[1]{\bigl(\begin{smallmatrix} #1\end{smallmatrix}\bigr)}
+
+\label{New Commands : Comments}
+\newcommand{\ccc}[1]{}
+\newcommand{\cccq}[1]{\textit{#1} }
+\newcommand{\cccp}[1]{\textbf{#1} }
+\newcommand{\cccz}[1]{\noindent\textbf{Zusammenfassung/Fragen:}\\ \noindent\texttt{#1}\\[.2cm]}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{New Commands : Bachelor-Thesis}
+%	Text
+\newcommand{\Rm}{\textsc{RMinimum} }
+\newcommand{\RM}{\textsc{RMedian} }
+\newcommand{\mE}{\textit{kleinste Element} }
+\newcommand{\nmE}{\textit{nicht-minimum Elemente} }
+\newcommand{\fg}{\textit{Fragile Complexity} }
+\newcommand{\wk}{\textit{Arbeit} }
+\newcommand{\tuning}{\textit{Tuning Parameter} }
+\newcommand{\trade}{\textit{Trade-Off} }
+\newcommand{\sampling}{\textit{Sampling-Phase} }
+\newcommand{\probing}{\textit{Probing-Phase} }
+\newcommand{\minele}{\textit{Minimum-Element} }
+\newcommand{\menwin}{\textit{Gewinner-Menge} }
+\newcommand{\menloss}{\textit{Verlierer-Menge} }
+\newcommand{\alg}{Algorithmus }
+\newcommand{\jp}{\textit{Jupyter} }
+\newcommand{\tf}{\textit{Testfall} }
+\newcommand{\csv}{\textit{.csv}-Dateien }
+
+%	Formula
+\newcommand{\fgm}{$f_{min}(n)$ }
+\newcommand{\fgr}{$f_{rem}(n)$ }
+\newcommand{\fgM}{$f_{med}(n)$ }
+\newcommand{\mfgm}{f_{min}(n)}
+\newcommand{\mfgr}{f_{rem}(n)}
+\newcommand{\mfgM}{f_{med}(n)}
+\newcommand{\mfge}{f_{e}(n)}
+\newcommand{\mfgc}{f(n)}
+
+%	Complex Formula
+\newcommand{\fgpair}{$\langle \mathbb{E}[f_{min}(n)],\max \mathbb{E}[f_{rem}(n)]\rangle$ }
+\newcommand{\elog}{\varepsilon^{-1}\log(\log(n))}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

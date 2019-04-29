@@ -1,0 +1,19 @@
+\select@language {ngerman}
+\contentsline {figure}{\numberline {1}{\ignorespaces Visualisierung Phase 1}}{9}{figure.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces Visualisierung Phase 2}}{9}{figure.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces $\qopname \relax o{log}_2(n) = 16$, $k = 64$}}{20}{figure.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces $h(n)$ f\IeC {\"u}r $k=4$ und $k=256$ sowie $\mu $ f\IeC {\"u}r $k=4,32, 256$.}}{21}{figure.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces $h(n)$ und $\mu $ f\IeC {\"u}r $\qopname \relax o{log}_2(n)=16$, $\qopname \relax o{log}_2(k)\in \{1,\cdots ,15\}$ sowie Fit f\IeC {\"u}r $\mu $.}}{21}{figure.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces $V(n)$ f\IeC {\"u}r $k\in \{4,32,256\}$ sowie Fit f\IeC {\"u}r $k\in \{4,256\}$.}}{22}{figure.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces $V(k)$ f\IeC {\"u}r $\qopname \relax o{log}_2(n)=16$ bez\IeC {\"u}glich $k$, $\qopname \relax o{log}_2(k)$ sowie $\qopname \relax o{log}_2 \qopname \relax o{log}_2(k)$.}}{22}{figure.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces (Skalierter) Fit f\IeC {\"u}r $V(k)$ f\IeC {\"u}r $\qopname \relax o{log}_2(n)=16$ bez\IeC {\"u}glich $\qopname \relax o{log}_2(k)$ und $\qopname \relax o{log}_2\qopname \relax o{log}_2(k)$.}}{23}{figure.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces (Skalierter) Vorhersage und Fit f\IeC {\"u}r $f_{min}(n)$ mit $k(n)=n^{1/2}$.}}{24}{figure.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Vorhersage f\IeC {\"u}r $f_{rem}(n)$, $w(n)$ und $rec(n)$ mit $k(n)=n^{1/2}$.}}{25}{figure.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Vorhersage und Fit f\IeC {\"u}r $f_{min}(n)$ bez\IeC {\"u}glich Auf- und Abrundung.}}{26}{figure.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces Vorhersage und Fit f\IeC {\"u}r $f_{rem}(n)$ sowie die Arbeit $w(n)$.}}{26}{figure.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces Vorhersage und Fit f\IeC {\"u}r $f_{rem}(n)$ sowie die Arbeit $w(n)$.}}{27}{figure.13}
+\contentsline {figure}{\numberline {14}{\ignorespaces $\qopname \relax o{log}(n)=16,\cdots ,18$ gegen\IeC {\"u}ber $\qopname \relax o{log}(n)=16,\cdots ,19$ sowie die Arbeit $w(n)$.}}{28}{figure.14}
+\contentsline {figure}{\numberline {15}{\ignorespaces $\qopname \relax o{log}$ vs $\qopname \relax o{log}\qopname \relax o{log}$ Fit sowie logarithmische Achsenskalierung.}}{28}{figure.15}
+\contentsline {figure}{\numberline {16}{\ignorespaces Vorhersage und Fit f\IeC {\"u}r $f_{rem}(n)$ sowie der Ausgang von Phase 3.}}{29}{figure.16}
+\contentsline {figure}{\numberline {17}{\ignorespaces Vorhersage und Fit f\IeC {\"u}r $f_{rem}(n)$ sowie die Arbeit $w(n)$.}}{29}{figure.17}
+\contentsline {figure}{\numberline {18}{\ignorespaces Vorhersage und Fit f\IeC {\"u}r $f_{rem}(n)$ sowie die Arbeit $w(n)$.}}{30}{figure.18}

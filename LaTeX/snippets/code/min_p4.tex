@@ -1,0 +1,33 @@
+\begin{python}
+#   Import
+import math
+import queue
+
+# ==================================================
+#   RMinimum: Phase 4
+def rmin_phase4(Wnew, k, n0, cnt, rec):
+
+    # Recursive call check
+    if len(Wnew) <= math.log(n0, 2) ** 2:
+        q = queue.Queue()
+
+        for w in Wnew:
+            q.put(w)
+        while q.qsize() > 1:
+            a = q.get()
+            b = q.get()
+
+            if a < b:
+                q.put(a)
+            else:
+                q.put(b)
+
+            cnt[a] += 1
+            cnt[b] += 1
+        mini = q.get()
+
+        return mini, cnt, rec
+    else:
+        rec += 1
+        return rminimum(Wnew, k, cnt, rec)
+\end{python}

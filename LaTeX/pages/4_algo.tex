@@ -1,0 +1,101 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Algorithmus}	%	RMEDIAN - Algorithmus
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RM erhält als Eingabe eine Menge $X$ mit $|X|=n$, $n\in\mathbb{N}$ sowie zwei weitere Parameter $k(n),d(n)\in\mR$ und liefert als Resultat den Median der Menge $X$.\\[.2cm]
+Der Algorithmus kann in drei getrennte Phasen unterteilt werden.\\
+Er beginnt mit der \textit{Sampling Phase}, die aus der Ursprungsmenge $X$ eine zufällige Teilmenge $S$ nimmt, diese sortiert und anschließend in Segmente unterteilt, deren Größe durch die Parameter $k(n)$ und $d(n)$ bestimmt wird. Da $S$ eine zufällige Teilmenge der Menge $X$ ist, besitzt die Menge $S$ in Erwartung den gleichen Median wie $X$. Dabei entstehen im Verlauf des Prozesses drei Teilmengen $L$, $C$ und $R$. Am Ende enthält die Menge $L$ Elemente kleiner, $R$ Elemente größer als der Median der Menge $S$ und $C$ gerade die Elemente, die im Bereich des Medians der Menge $S$ liegen und somit als Median-Kandidaten dienen.\\[.2cm]
+
+%================================================================
+%	Algorithmus
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{algo: rmed_1}	%	ALGO - RMedian - Probing Phase
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{algorithm}[H]
+	\SetAlgoLined
+	\caption{\RM : Sampling phase}
+	\textbf{procedure} \textsc{Sampling Phase}$(X=\{x_1,\cdots,x_n\},k(n),d(n))$\\
+		\hspace*{.5cm} Randomly sample $k$ elements from $X$ and sort $S$ with AKS\\
+		\hspace*{.5cm} Distribute $S$ into buckets $L_b,L_{b-1},\cdots,L_1,C,R_1,\cdots,R_{b-1},R_b$ as follows:\\
+			\hspace*{1cm} set $n_0=2\sqrt{k\log(n)},n_1=3\sqrt{k\log(n)},n_i=d\cdot n_{i-1}$\\
+			\hspace*{1cm} $C=S[k/2-n_0:k/2+n_0]$ median candidates\\
+			\hspace*{1cm} $L_i=S[k/2-n_i:k/2-n_{i-1}]$ buckets of elements presumed smaller than median\\
+			\hspace*{1cm} $R_i=S[k/2+n_{i-1}:k/2+n_i]$ buckets of elements presmued larger than median\\
+	\textbf{return} $L,C,R$
+\end{algorithm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\vspace*{.4cm}
+%
+\noindent
+Anschließend folgt die \textit{Probing Phase}, welche für die Filterung dieses Algorithmus verantwortlich ist. Hierbei wird die Menge $S$ aus der \textit{Sampling Phase} genutzt, um alle übrigen Elemente so zu Filtern, dass am Ende die Menge $C$ eine Teilmenge der Ursprungsmenge $X$ darstellt, mit Elementen in einer gewissen Intervall um den Median herum. Insbesondere beinhaltet diese Menge den Median selbst.\\[.2cm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{algo: rmed_2}%	ALGO - RMedian - Sampling Phase
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{algorithm}[H]
+	\SetAlgoLined
+	\caption{\RM : Probing Phase}
+	\textbf{procedure} \textsc{Probing Phase}$(L, C, R)$\\
+	\For{$x_i\in X\backslash S$ in random order}{
+		\For{$j\in[b-1,\cdots,1]$ in order}{
+			$x_A\leftarrow$ arbitrary element in $L_j$ with fewest compares\\
+			$c\leftarrow1$ if $x_A$ is marked else $2$\\
+			\If{$x_i<x_A$}{
+				add $x_i$ as new pivot to $L_{b+c}$ if $j<b-c$ and mark it, otherwise discard $x_i$\\
+				stop processing $x_i$
+			}
+			$x_B\leftarrow$ arbitrary element in $R_j$ with fewest compares\\
+			$c\leftarrow 1$ if $x_B$ is marked else $2$\\
+			\If{$x_i>x_B$}{
+				add $x_i$ as new pivot to $R_{b+c}$ if $j<b-c$ and mark it, otherwise discard $x_i$\\
+				stop processing $x_i$
+			}
+		\tcp*{By now it is established that $S[k/2-n_1]\leq x_i \leq S[k/2+n_1]$}
+		add $x_i$ as median candidate to $C$
+		}
+	}
+	\textbf{return} $L,C,R$
+\end{algorithm}
+%
+\vspace*{.4cm}
+%
+\noindent
+Am Ende folgt die \textit{Cleaning Phase}, die den Abschluss des Algorithmus bildet. Bei unglücklicher Wahl der Sample-Menge $S$ muss der Algorithmus abgebrochen werden. Dies geschieht, wenn das Sample nicht repräsentativ für die gesamte Menge steht, der relative Median des Samples sich also stark von dem Realen unterscheidet. Dieser Fall tritt jedoch nur mit einer äußerst geringen Wahrscheinlichkeit auf. Entsprechend der Mächtigkeit der entstandenen Menge $C$ ruft der Algorithmus sich nun auf dieser Menge erneut auf, oder sortiert diese Menge mit dem \textit{AKS}-Algorithmus und gibt den Median aus.\\[.2cm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{algo: rmed_3}%	ALGO - RMedian - Cleaning Phase
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{algorithm}[H]
+	\SetAlgoLined
+	\caption{\RM : Cleaning Phase}
+	\textbf{procedure} \textsc{Cleaning Phase}$(L, C, R, n0)$\\
+	\If{$\max(\sum_i|L_i|,\sum_i|R_i|)>n/2$}{
+		\textbf{return} \textsc{DetMedian}$(X)$
+		\tcp*{Partitioning too imbalanced $\Rightarrow$ median not in $C$}
+	}
+
+	$k=\sum_i(|L_i|-|R_i|)$\\
+	\If{$k<0$}{
+		add $k$ arbitrary elements from $\bigcup_i R_i$ to $C$
+	}
+	\Else{
+		add $k$ arbitrary elements from $\bigcup_i L_i$ to $C$
+	}
+	\If{$|C|<\log^4(n0)$}{
+		sort $C$ with AKS and \textbf{return} median
+	}
+	\textbf{return} \textsc{RMedian}$(C,k(n),b(n))$
+\end{algorithm}
+%
+\vspace*{.4cm}
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%================================================================
+%	Ende
+\noindent
+Die Ausgabe des Algorithmus ist der Median der Eingabemenge $X$.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

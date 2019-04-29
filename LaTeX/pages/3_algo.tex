@@ -1,0 +1,37 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Algorithmus}	%	RMINIMUM - Algorithmus
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+%================================================================
+%	Algo
+\begin{center}
+\begin{tabular}{lp{14cm}}
+\multicolumn{2}{c}{\Rm}\\
+\hline
+\textbf{Eingabe:}& Ein 2-Tupel der Menge $X$ mit total Ordnung von $n$ verschiedenen Elementen sowie einem \tuning $k(n)$.\\
+\textbf{Ausgabe:}& Das \mE der Menge $X$.\\
+\hline
+\end{tabular}
+%
+\begin{tabular}{lp{14cm}}
+1.\label{algo: min_1}& Man bildet aus den $n$ Elementen zufällig $n/2$ paarweise-disjunkte Paare und nutzt für jedes Paar einen Vergleich um $X$ in zwei neue Mengen (gleicher Größe) 
+$W$ und $L$ zu unterteilen, wobei $W$ die \textit{Gewinner} des vorangegangenen Vergleiches, also jeweils die kleineren Elemente der Paare enthält und $L$ entsprechend die \textit{Verlierer}. \newline 
+Bezeichne $|W|:=w$ sowie $|L|:=l$ wobei gilt $w=l=n/2$.\\
+2.\label{algo: min_2}&Nun wird $L$ zuerst in $l/k$ zufällige disjunkte Teilmengen $L_1,\cdots,L_{l/k}$ der Größe $k$ partitioniert und anschließend in jeder Teilmenge $L_i$ das \mE $m_i$ mit einem perfekt ausbalancierten Turnierbaum ermittelt.\newline
+Anschließend werden alle $m_i$ in einer Menge $M$ zusammengefasst.\\
+\ccc{Ref Theorem 1?}
+3.\label{algo: min_3}&$W$ wird nun in $w/k$ zufällige disjunkte Teilmengen $W_1,\cdots,W_{w/k}$ der Größe $k$ partitioniert. Dann werden in jeder Menge $W_i$ alle Elemente herausgefiltert, die größer als das entsprechende Element $m_i$ sind.\newline
+Zuletzt vereinigt man alle Mengen $W_i$ und erhält $W'=\bigcup_i\{x_w|x_w\in W_i \wedge x_{w} < m_i\}$.\\
+4.\label{algo: min_4}&Falls $|W'|<\log^2(n)$, wird ein perfekt ausbalancierter Turnierbaum genutzt, um das Minimum von $W'$ zu finden auszugeben. Andernfalls wird \Rm rekursiv mit Eingabe $(W'$,$k(n))$ aufgerufen. 
+\end{tabular}
+\end{center}
+
+%================================================================
+\noindent
+Die Ausgabe des Algorithmus ist das der Ordnung nach kleinste Element der Eingabemenge $X$.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

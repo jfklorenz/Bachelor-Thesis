@@ -1,0 +1,38 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Experimentalfälle}		%	TESTFÄLLE - Test
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+Die primäre Aufgabe dieser Arbeit ist die experimentelle Auswertung der Algorithmen \Rm und \RM und die Analyse der Resultate. In diesem Abschnitt wird zunächst diskutiert, was der Fokus der Analyse für beide Algorithmen ist und wie entsprechend unsere Auswahl an Experimentalfällen ausfällt.  Hierbei werden wir uns gegebenenfalls auf die in den entsprechenden Kapiteln vorgestellten Theoreme und Lemmata berufen. Zuletzt werden die genutzten Analysewerkzeuge kurz vorgestellt.\\[.1cm]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+Für beide Algorithmen sind die \fg der Algorithmen $f(n)$, die des Minimums \fgm oder Medians \fgM und die aller nicht-Minimum beziehungsweise nicht-Median Elemente von Bedeutung und somit auch die gesamt verrichtete Arbeit $w(n)$ beider Algorithmen.\\\\[.05cm]
+Hierbei wird sich auf die Aussagen für den Algorithmus \Rm von Lemma~\ref{lem: min_2} sowie die Theoreme~\ref{theo: min_3}, ~\ref{theo: min_4} und ~\ref{theo: min_5} bezogen und versucht, diese experimentell zu unterstützen.\\
+Analoges gilt bezüglich des Algorithmus \RM für die Theoreme~\ref{theo: med_28}, ~\ref{theo: med_29} und ~\ref{theo: med_30}.\\[.05cm]
+Für den Algorithmus \RM wird sich auf die experimentelle Unterstützung der Theoreme~\ref{theo: min_4} und ~\ref{theo: min_5} beschränkt.\\[.05cm]
+Die ersten drei Phasen von \Rm sowie die ersten beiden Phasen von \RM entsprechen einer randomisierten Filterung der Eingabemenge. Das Verhältnis von der Mächtigkeit der Eingabemenge und von der Mächtigkeit der gefilterten Menge entspricht einer Zufallsvariablen $\Delta X\in[0,1]$. Inwiefern diese von den Eingabeparametern den entsprechenden Algorithmen abhängt sowie ihre Verteilung, ist abschließend Bestand der Analyse.\\[.1cm]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Technik
+\noindent
+Die bereits diskutierte Implementierung der jeweiligen Algorithmen wurde im Vorfeld auf dem Hochleistungsrechner \textit{Goethe-HLR} der Goethe Universität Frankfurt am Main ausgeführt. Dabei handelt es sich um einen Computer Cluster basierend auf einer Intel CPU Architektur mit einem \textit{Scientific Linux 7.6} Betriebssystem.\\
+Für eine optimale Nutzung des Servers wäre eine Parallelisierung des Codes vorteilhaft gewesen. Dies ist durch die rekursiven Aufrufe innerhalb der Algorithmen jedoch nicht möglich. Aus diesem Grund wurde die wiederholte Ausführung einzelner experimenteller Fälle parallel ausgeführt. Die Ergebnisse wurden in der Arbeit beiliegenden \csv gespeichert und anschließend lokal ausgewertet.\\[.1cm]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Testfälle
+\noindent
+Beide Algorithmen besitzen als Eingabe die Parameter $X$ und $k(n)$, wobei $X$ eine Menge mit strikter Totalordnung und $k(n)$ einen ganzzahligen Parameter darstellt. Ebenso nutzen beide Algorithmen in der zweiten und dritten Phase die Verhältnismäßigkeiten zwischen $n$ und $k(n)$ zur Bestimmung der Teilmengengröße. Aus diesem Grund wurde sich bei den hier präsentierten Daten für eine einheitliche Struktur der Eingaben entschieden, um ihre Vergleichbarkeit untereinander gewährleisten zu können.\\[.05cm]
+Für die Menge $X$ der Eingabe wurde o.B.d.A. für beide Algorithmen $X=\{0,\cdots,n-1\}$, $n=2^i$, $i,k(n)\in\mN$ gewählt. Die spezifische Wahl des Parameters $k(n)$ sowie des Parameters $d$ des Algorithmus \RM wird an entsprechender Stelle genauer ausgeführt.\\
+Für den Algorithmus \Rm wurde jeder Fall zehntausend mal, für \RM unterschiedlich oft ausgeführt. Die in den folgenden Kapiteln angeführten Grafiken visualisieren stets alle Ausführungen einer festen Eingabe oder den Verlauf bei Änderung eines Parameters. In letzterem Fall wurde stets der Mittelwert aller Wiederholungen der entsprechenden Eingabe als Repräsentant für die Darstellung gewählt.\\[.1cm]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Methoden
+\noindent
+Nun gilt es, die experimentellen Daten mit den Prognosen der entsprechenden Theoreme und Lemmata abzugleichen. Um mit ausreichender Gewissheit eine Aussage annehmen oder ablehnen zu können, muss insbesondere eine aussagekräftige Unterscheidung zwischen einer einfach-logarithmischen und einer doppelt-logarithmischen Entwicklung getroffen werden.\\[.05cm]
+Für die benötigte nicht-lineare Regression wurde das Programm \textit{Gnuplot}~\cite[S.74-81]{gnu} genutzt. Dieses nutzt den Marquardt-Levenberg~\cite[S.65-68]{gnu2} Algorithmus zur Ausgleichsrechnung, um mit Hilfe der Methode der kleinsten Quadrate einen passenden Fit zu bestimmen. Die Auswertung der Fits sowie die Wahl der Parameter liegen der Arbeit als \textit{.txt}-Datei bei.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

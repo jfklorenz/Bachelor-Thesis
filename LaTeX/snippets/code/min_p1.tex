@@ -1,0 +1,26 @@
+\begin{python}
+#   Import
+import random
+
+# ==================================================
+#   RMinimum: Phase 1
+def rmin_phase1(X, cnt):
+
+    # Init W, L
+    W = [0 for _ in range(len(X) // 2)]
+    L = [0 for _ in range(len(X) // 2)]
+
+    # Random pairs
+    random.shuffle(X)
+    for i in range(len(X) // 2):
+        if X[2 * i] > X[2 * i + 1]:
+            W[i] = X[2 * i + 1]
+            L[i] = X[2 * i]
+        else:
+            W[i] = X[2 * i]
+            L[i] = X[2 * i + 1]
+        cnt[X[2 * i + 1]] += 1
+        cnt[X[2 * i]] += 1
+
+    return W, L, cnt
+\end{python}

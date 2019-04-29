@@ -1,0 +1,48 @@
+\begin{python}
+#   Import
+import math
+import random
+import queue
+
+# ==================================================
+#   Phase 4
+def rminimum(X, k, cnt = [], rec = 0):
+
+	# Generate empty cnt list if its not a recursive call
+    if cnt == []:
+        cnt = [0 for _ in range(max(X) + 1)]
+
+    # Convert parameters if needed
+    k = int(k)
+    n = len(X)
+
+    # Base case |X| = 3
+    if len(X) == 3:
+        if X[0] < X[1]:
+            cnt[X[0]] += 2
+            cnt[X[1]] += 1
+            cnt[X[2]] += 1
+
+            if X[0] < X[2]:
+                mini = X[0]
+            else:
+                mini = X[2]
+        else:
+            cnt[X[0]] += 1
+            cnt[X[1]] += 2
+            cnt[X[2]] += 1
+
+            if X[1] < X[2]:
+                mini = X[1]
+            else:
+                mini = X[2]
+        return mini, cnt, rec
+
+    # Run phases
+    W, L, cnt = phase1(X, cnt)
+    M, cnt = phase2(L, k, cnt)
+    Wnew, cnt = phase3(W, k, M, cnt)
+    mini, cnt, rec = phase4(Wnew, k, n, cnt, rec)
+
+    return mini, cnt, rec
+\end{python}

@@ -1,0 +1,120 @@
+\documentclass[12pt,a4paper,titlepage,xcolor=dvipsnames,bibliography=totoc, listof=totoc]{scrartcl}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{Preamble}			%	Preamble
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Packages:		form/packages
+\include{form/packages}
+
+%	Colors:			form/colors
+\include{form/colors}
+
+%	Format:			form/format  
+\include{form/format}
+
+%	Header:			form/header
+\include{form/header}
+
+%	New Commands:	form/newcommands
+\include{form/newcommands}
+
+%	Fancy Section:	form/fancysection
+\include{form/fancysection}
+
+%	Code Style:		form/code
+\include{form/code}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\label{Begin Document}		%	Begin Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%lge%%%%%%%%%%%%%%
+\include{pages/title}\label{Titlepage}	%	Titlepage
+\cleardoublepage\pdfbookmark{\contentsname}{toc}\tableofcontents
+\newpage \label{Table of Contents}		%	Table of Contents
+
+\input{pages/0_eid}
+\newpage
+
+%================================================================
+\label{1 : Einleitung}			%	1 : Einleitung
+%----------------------------------------------------------------
+\input{pages/1_einleitung}		%	Einleitung
+
+\newpage
+
+%================================================================
+\label{2: Theorie}				%	2 : Theorie
+%----------------------------------------------------------------
+\input{pages/2_fragile}			%	Fragile Complexity
+
+
+\newpage
+
+%================================================================
+\label{3 : RMinimum}			%	3 : RMinimum
+%----------------------------------------------------------------
+\input{pages/3_rminimum}		%	Einleitung
+\input{pages/3_algo}			%	Algorithmus
+\input{pages/3_analysis}		%	Analyse
+
+\newpage
+
+%================================================================
+\label{4 : RMedian}				%	4 : RMedian
+%----------------------------------------------------------------
+\input{pages/4_rmedian}			%	Einleitung
+\input{pages/4_algo}			%	Algorithmus
+\input{pages/4_analysis}		%	Analyse
+
+\newpage
+\input{pages/9_impl}
+\newpage
+
+%================================================================
+\label{5 : Testfälle}			%	5 : Testfälle
+%----------------------------------------------------------------
+\input{pages/5_test}
+\input{pages/5_rmin}			%	Einleitung
+\input{pages/5_rmin_0}
+\input{pages/5_rmin_1}
+\input{pages/5_rmin_2}
+\input{pages/5_rmed}
+\input{pages/5_rmed_1}
+\input{pages/5_rmed_2}
+\newpage
+
+%================================================================
+\label{6 : Ausblick}			%	6 : Ausblick	
+%----------------------------------------------------------------
+\include{pages/6_ausblick}
+
+\newpage
+
+%================================================================
+\label{7 : Data}				%	7 : Data
+%----------------------------------------------------------------
+\input{pages/7_data}
+
+\newpage
+
+%================================================================
+\label{8 : Code}				%	8 : Code
+%----------------------------------------------------------------
+\input{pages/8_code}
+\newpage
+%================================================================
+
+\label{0 : Literatur}			%	0: Literaturverzeichnis
+%----------------------------------------------------------------
+\include{bib/bib}
+\newpage
+
+\listoffigures
+\newpage
+
+\listoftables
+\newpage
+
+\input{pages/danke}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{End Document}
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

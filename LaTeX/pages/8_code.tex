@@ -1,0 +1,31 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Code}		%	Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Der in diesem Abschnitt präsentierte Teil des in dieser Arbeit verwendeten Codes soll zur besseren Gesamtverständlichkeit dieser Arbeit beitragen.
+
+\subsection{\Rm}
+Anbei die Realisierung der zweiten und dritten Phase des Algorithmus \Rm durch die Methoden \pythoninline{def rmin_phase2} und \pythoninline{def rmin_phase3}.
+
+\subsubsection{Phase 2}
+\input{snippets/code/min_p2}
+\subsubsection{Phase 3}
+\input{snippets/code/min_p3}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\RM}
+Anbei die Realisierung der zweiten Phase des Algorithmus \RM durch die Methoden \pythoninline{def rmed_phase3}.
+\subsubsection{Phase 2}
+\input{snippets/code/med_p2}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Werkzeug}
+Neben den Algorithmen wurden weitere Werkzeuge zur Datenverarbeitung implementiert.\\[.05cm]
+Anbei beispielhaft das \textit{Bash}-Skript, welches genutzt wurde, um mit dem \textit{Goethe-HLR} Cluster zu kommunizieren, sowie eine \textit{Gnuplot}-Datei~\cite{gnu} zur Berechnung eines Fits mithilfe des \textit{Marquardt-Levenberg} Algorithmus~\cite{gnu2}. 
+\subsubsection{Server}
+\textit{Bash}-Skript zur Ausführung der Datei \textit{python\_py1.py} auf dem \textit{Goethe-HLR} Cluster.
+\input{snippets/code/bash}
+\subsubsection{Fit}
+\textit{Gnuplot}-Skript zur Berechnung eines Fits bezüglich der Daten aus der Datei \textit{filename.csv} und der Funktion $f(x)=a\cdot \log_2(x)/\log_2\log_2(x) + b$ mit Startwerten $a=6.5$ sowie $b=-8.5$.
+\input{snippets/code/gnu}

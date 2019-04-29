@@ -1,0 +1,55 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Fragile Complexity}	%	THEORIE - Fragile Complexity
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+Laufzeiteffiziente Algorithmen zum Auffinden eines bestimmten Elements innerhalb einer Menge sind für die Wissenschaft zu jedem Zeitpunkt von Interesse. Der theoretische Schwerpunkt dieser Arbeit liegt jedoch auf der Analyse der vorliegenden Algorithmen in Bezug auf ihre \fg beziehungsweise die spezifischer Elemente.\\[.1cm]
+Gerade bei Suchalgorithmen ist oft ein spezifisches Element von besonderem Interesse. Wird dieses Element im Laufe des Algorithmus oft aufgerufen, so kann man von einer dauerhaft erhöhten Belastung eines für den Nutzer wichtigen Elements ausgehen. Bei vergleichsbasierten Algorithmen entspricht ein Aufruf eines Elements dessen Teilnahme an einem direkten Vergleich mit einem anderen Element.\\[.05cm]
+Als weltliches Beispiel sei hier ein fiktiver Staat genannt, der den Boxer des Landes für die Teilnahme an den olympischen Spielen bestimmen will. Verfährt der Staat hier nach einem klassischen K.O.-Runden Prinzip, so wird zwar der Beste ermittelt, dabei jedoch enorm strapaziert. Die \fg entspricht in diesem Gleichnis der Belastung des Sportlers.\\[.05cm]
+Die Nummerierung der hier folgenden Definitionen und Theoreme wurde an die des Papers~\cite{meyer2} angelehnt und ist somit nicht durchlaufend.
+% ===============================================================
+\begin{manualdefinition}{1}[Fragile Complexity]\label{def: fgc}
+Ein vergleichsbasierter Algorithmus $\mathcal{A}$ hat eine \textit{fragile complexity} von $f(n)$, falls jedes Eingabeelement an maximal $f(n)$ Vergleichen teilnimmt. Insbesondere besitzt ein Element $e$ bezüglich eines Algorithmus $\mathcal{A}$ eine \textit{fragile complexity} von $f_e(n)$, falls $e$ bei der Ausführung von $\mathcal{A}$ an maximal $f_e(n)$ Vergleichen teilnimmt.
+\end{manualdefinition}
+
+% ===============================================================
+\noindent
+Nichtsdestotrotz soll auch weiterhin der Gesamtaufwand des Algorithmus selbst bewertet werden. Ein System-unabhängiges Maß hierfür ist die Anzahl der gesamt verrichteten Vergleiche.  
+
+% ===============================================================
+\begin{manualdefinition}{2}[Arbeit]\label{def: work}
+Ein Algorithmus $\mathcal{A}$ verrichtet \textit{Arbeit} von $w(n)$, falls bei der Ausführung von $\mathcal{A}$ maximal $w(n)$ Vergleiche ausgeführt werden.
+\end{manualdefinition}
+
+% ===============================================================
+\noindent
+Da wir in unserem Fall spezifische Elemente innerhalb einer Menge $X$ anhand der Menge der Vergleichsoperatoren $\{<,>\}$ zwischen verschiedenen Elementen $x_i,x_j\in X$, $i\neq j$ bestimmen, muss die Menge der strikten Totalordnung genügen. Dies bedeutet, dass für zwei solcher Elemente stets gilt $x_i > x_j$ oder $x_i < x_j$ und somit insbesondere $x_i \neq x_j$, $\forall i\neq j$.\\
+Um die Position eines Elements innerhalb der Menge unabhängig seines Wertes bezüglich der gegebenen Ordnung zu klassifizieren, legen wir den Begriff des Rangs fest.
+ 
+% ===============================================================
+\begin{manualdefinition}{3}[Rang]\label{def: rank}
+Bezüglich einer Menge $X$ bezeichnet $rank_X(e)$ den Rang eines Element $e\in X$, welcher der Größe der Teilmenge von $X$ entspricht, die alle Elemente enthält die nicht größer als $e$ sind.
+\end{manualdefinition}
+
+% ===============================================================
+\noindent
+Anders gesagt, entspricht der Rang eines Elements seiner Position innerhalb der Menge nach vollständiger Ordnung.\\[.1cm]
+Wir rekapitulieren nun kurz ein paar Theoreme des Papers~\cite{meyer1}, auf die wir uns während unserer Analyse berufen werden. Da sich die Algorithmen in diesem Ansatz mit dem Auffinden des Minimums beziehungsweise des Medians beschäftigen, wollen wir zunächst eine obere Schranke für die \fg des Algorithmus $f(n)$ selbst sowie die des Minimums \fgm festlegen.
+
+% ===============================================================
+\begin{manualtheorem}{1}\label{theo: fgc_min}
+Die \fg des Auffindens des Minimums von $n$ Elementen ist maximal $\lceil \log(n)\rceil$.
+\end{manualtheorem}
+% ===============================================================
+\begin{proof}
+Nutze einen perfekt ausbalancierten Turnierbaum.
+\end{proof}
+
+% ===============================================================
+\begin{manualtheorem}{2}\label{theo: fgc_min_det}
+Für jeden deterministischen Algorithmus $\mathcal{A}$ zur Bestimmung des Minimums von $n$ Elementen hat das Minimum-Element eine \fg \fgm von maximal $\lceil \log(n)\rceil$.
+\end{manualtheorem}
+
+\noindent
+% ===============================================================
+Dies sind alle innerhalb des Rahmens dieser Arbeit relevanten Begrifflichkeiten und allgemeine Theoreme.

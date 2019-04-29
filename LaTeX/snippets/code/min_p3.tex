@@ -1,0 +1,27 @@
+\begin{python}
+#   Import
+import random
+
+# ==================================================
+#   RMinimum: Phase 3
+def rmin_phase3(W, k, M, cnt):
+
+    # Generate subsets
+    random.shuffle(W)
+    W_i = [W[i * k:(i + 1) * k] 
+    		for i in range((len(W) + k - 1) // k)]
+    W_i_filt = [0 for _ in range(len(W_i))]
+
+    # Filter subsets
+    for i in range(len(W_i_filt)):
+        W_i_filt[i] = [elem for elem in W_i[i] if elem < M[i]]
+        cnt[M[i]] += len(W_i[i])
+        for elem in W_i[i]:
+            cnt[elem] += 1
+
+    # Merge subsets
+    Wnew = [w for sublist in W_i_filt for w in sublist]
+
+    return Wnew, cnt
+
+\end{python}

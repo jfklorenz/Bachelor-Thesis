@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Implementierung}	%	RMINIMUM - Implementierung
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+In diesem Abschnitt wird die beiliegende Implementierung der Algorithmen \Rm und \RM vorgestellt und die Auswahl der Unittests sowie die Funktionalität weiterer beiliegender Dateien diskutiert.\\[.1cm]
+Als grundlegende Programmiersprache wurde für beide Projekte \textit{Python} gewählt. Bei der Implementierung wurde weitestgehend auf externe Bibliotheken verzichtet, lediglich \textit{matplotlib} und \textit{pandas} zur Datenanalyse sowie \textit{PyTest} für beiliegende Testfälle wurden eingebunden.\\[.05cm]
+Der vollständige Code dieser Arbeit ist bei \textit{Github}~\footnote{Github Repository: \href{https://github.com/jfklorenz/Bachelor-Thesis}{https://github.com/jfklorenz/Bachelor-Thesis}} veröffentlicht.  Für das gesamte Projekt sowie die einzelnen Algorithmen liegen \textit{README.md} Dateien zur besseren Strukturierung bei. An kritischen Stellen ist der gesamte Code einheitlich mit Kommentaren versehen, so dass hiermit auf die Ausführung einzelner Codesegmente verzichtet wird. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Datenstruktur / Basics
+\subsection{\Rm}
+Sowohl der Algorithmus \Rm selbst als auch alle vier Phasen des Algorithmus liegen als separate Dateien vor und sind unabhängig voneinander ausführbar. Der Hauptanteil der Arbeit des Algorithmus besteht aus dem Bilden von Teilmengen einer gegebenen Menge sowie dem Bestimmen des Minimums einer Menge durch einen perfekt ausbalancierten Turnierbaum. Aus diesem Grund wurde zur Speicherung der Eingabemenge als Datentyp Listen gewählt. Diese erlauben ein unkompliziertes Aufteilen in Teilsegmente, wie bei \Rm in der zweiten und dritten Phase sowie bei \RM in der Ersten vonnöten. Des weiteren erlaubt der Index basierte Zugriff auf einzelne Elemente eine erleichterte Speicherung der Anzahl benötigter Vergleiche.\\[.05cm]
+Die von \Rm  genutzten perfekt ausbalancierten Turnierbäume wurden mit Hilfe einer Warteschlange realisiert. Für einen Turnierbaum mit $n$ Elementen werden zunächst alle Elemente in einer Warteschlange gespeichert. Anschließend werden nach dem \textit{First-In-First-Out} Prinzip zwei Elemente entnommen und miteinander verglichen. Das kleinere der beiden Elemente wird daraufhin wieder in die Warteschlange eingefügt. Dieser Vorgang wird so lange wiederholt, bis sich nur noch ein einziges, als Turniersieger deklariertes Element in der Warteschlange befindet. Der Vorteil dieses Verfahren ist, dass nur eine Warteschlange der Länge $n$ und keine rekursiven Aufrufe benötigt werden.\\[.05cm]
+Die Anzahl der Vergleiche, an denen jedes Element teilgenommen hat, wird für jedes Element separat gespeichert.
+
+\subsection{\RM}
+Für \RM liegt ebenfalls der Algorithmus wie auch die drei Phasen als separate Dateien vor. Da auch dieser Algorithmus mit dem Aufteilen von Mengen anhand von Indizes arbeitet, wurde auch hier als Datentyp Listen gewählt. Dies erlaubt zusätzlich eine hohe Konsistenz in der Auswertung beider Algorithmen und ihrer gespeicherten Daten.
+Für jedes Element werden zum einen die Anzahl der Vergleiche gespeichert, an denen es teilgenommen hat, und zum anderen die in der zweiten Phase auftretende Markierung gespeichert.
+
+\noindent
+Der Code beider Algorithmen liegt der Arbeit in elektronischer Form bei, ist jedoch auszugsweise angehängt. Da der Schwerpunkt dieser Arbeit auf der Auswertung der Daten liegt und der Code an entsprechenden Stellen kommentiert wurde, wird hier auf weitere Ausführungen bezüglich der exakten Implementierung verzichtet.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Unittests
+\subsection{Modultests}
+Für die experimentelle Auswertung dieser Arbeit ist es notwendig zu garantieren, dass die Vorliegende Implementierung funktional arbeitet. Um dies zu gewährleisten wurden im Vorfeld Modultests durchgeführt.
+
+% ===============================================================
+\subsubsection{PyTest}
+Für die reine Validierung einzelner Codesegmente und für die Korrekte Ausgabe des Minimums beziehungsweise Medians wurde \textit{PyTest} gewählt.\\[.05cm]
+Neben der Möglichkeit einer freien Parametrisierung der Testfälle liegen bereits vordefinierte Eingaben bei. Diese beinhaltet zum einen eine randomisierte Parametrisierung und zum anderen ihrem Definitionsbereich nach extreme Belegungen.\\[.1cm]
+
+\noindent
+Für den Algorithmus \Rm wurde Für Phase 1 getestet, ob die Mengen $W$ und $L$ gleich mächtig und das Minimum in $W$ enthalten ist. Des weiteren wird garantiert, dass jedes Element an genau einem Vergleich teilgenommen hat.\\[.03cm]
+Für Phase 2 wird zunächst die korrekte Größe der Teilmengen geprüft. Anschließend wird validiert, dass jedes Element an maximal $\lceil \log_2(k)\rceil$ Vergleichen teilgenommen hat sowie das Minimum an exakt so vielen.\\[.03cm]
+Für Phase 3 ist gewährleistet, dass die Größe der Teilmengen und die eine sinngemäße Filterung eingehalten wird. Ebenso wird die vorgesehene Anzahl an Vergleichen stets exakt eingehalten.\\[.03cm]
+Für Phase 4 muss lediglich das korrekte Einhalten der gegebenen Schranke überprüft werden.\\[.1cm]
+Anschließend wurde der gesamte Algorithmus auf die korrekte Ausgabe des Minimums beziehungsweise Medians hin getestet. Insbesondere sei hier hervorzuheben, dass für die geleistete Arbeit $w(n)$ des Algorithmus \Rm auch für eine randomisierte Parametrisierung stets die Gleichung $n/2 \leq w(n) \leq 2\cdot n$ eingehalten wurde. Dies bestärkt Theorem~\ref{theo: min_3}.\\[.1cm]
+
+\noindent
+Die Gestaltung der Modultests für den Algorithmus \RM ist jedoch komplexer. Dies liegt primär an der Tatsache, dass es auf rein theoretischer Basis sehr aufwendig ist, eine gültige Eingabe für die zweite Phase zu generieren. Aus diesem Grund wurde zuerst Phase 1 des Algorithmus validiert. Anstatt nun anschließend die zweite Phase allein zu testen, wurden die ersten beiden Phasen nun zusammen durchlaufen.\\[.03cm]
+Für Phase 1 wurde die korrekte Konstruktion der Mächtigkeit aller Teilmengen $L_i$, $R_i$, $L$, $C$ und $R$ getestet.\\[.03cm]
+Für Phase 2 wurde überprüft, ob sich der Median am Ende tatsächlich in der Menge $C$ der Median-Kandidaten befindet. Außerdem wurde gewährleistet, dass die \fg des Medians \fgM nicht größer ist als die Anzahl der linken und rechten Behälter beziehungsweise Mengen, also $f_{med}(n) \leq |L| + |R| = 2\cdot b$.\\[.03cm]
+Für Phase 3 wurden für jeden der drei möglichen Ausgänge Eingaben konzipiert, um zu kontrollieren, ob immer eine korrekte Auswahl getroffen wurde.
+
+% ===============================================================
+\subsubsection{Jupyter Notebook}
+Um die korrekte Auswertung der \fg $f(n)$ und der Arbeit $w(n)$ zu gewährleisten, liegen ausführlichere Experimentalfälle als \textit{Jupyter Notebook} Dateien bei. Diese erlauben eine schnelle Reproduzierbarkeit einzelner Experimente.\\
+Insbesondere liegen für die hier diskutierten Theoreme spezielle Dateien bei, die es dem Nutzer ermöglichen sollen, deren Aussagen für manuelle Eingaben effizient zu überprüfen.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Werkzeuge}
+Im Laufe dieser Arbeit sind ein paar zusätzliche Funktionalitäten implementiert worden, die den Umgang mit den Daten erleichtern sollen.\\[.05cm]
+Da zur empirischen Auswertung oft nur bedingte Zeitintervalle zur Verfügung stehen bietet die beiliegende \textit{Python} Datei \textit{merge.py} die Option, in verschiedenen \textit{.csv}-Datei gespeicherte Daten der gleichen Eingabe in Form von \textit{Pandas DataFrames} zu einer einzigen, korrekt benannten Datei zusammenzufügen.\\[.1cm]
+Des Weiteren liegen alle Methoden bei die benötigt werden, um die in dieser Arbeit verwendeten Grafiken zu reproduzieren oder für andere Datensätze neu auswerten zu können.\\[.1cm]
+Zuletzt werden in dieser Arbeit wiederholt Datensätze gegen eine bestimmte Funktion gefittet. Dies wurde durch beiliegende \textit{Gnuplot}-Dateien realisiert und kann für neue Datensätze flexibel angepasst werden.\\[.1cm]
+Für weitere Informationen bezüglich eines beiliegenden Werkzeugs sei hier auf die entsprechende \textit{README.md} verwiesen. 
+
+
+
+

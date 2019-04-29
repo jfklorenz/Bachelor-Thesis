@@ -1,0 +1,53 @@
+\begin{python}
+#   Import
+import math
+import random
+
+# ==================================================
+#	RMedian: Phase 3
+def rmed_phase3(X, k, d, L, C, R, cnt, rec, n0):
+
+    n = len(X)
+    sumL, sumR = 0, 0
+    for l in L:
+        sumL += len(l)
+    for r in R:
+        sumR += len(r)
+
+    s = sumL - sumR
+
+    #   Det Median
+    if max(sumL, sumR) > n / 2:
+        res = 'DET'
+        return statistics.median(C), cnt, res, rec
+
+    #   Expand
+    if s < 0:
+        rs = []
+        for r in R:
+            rs += r
+        random.shuffle(rs)
+        for i in range(-s):
+            C.append(rs[i])
+            for r in R:
+                if rs[i] in r:
+                    r.remove(rs[i])
+    elif s > 0:
+        ls = []
+        for l in L:
+            ls += l
+        random.shuffle(ls)
+        for i in range(s):
+            C.append(ls[i])
+            for l in L:
+                if ls[i] in l:
+                    l.remove(ls[i])
+
+    # AKS
+    if len(C) < math.log(n0) ** 4:
+        res = 'AKS'
+        return statistics.median(C), cnt, res, rec
+
+    rec += 1
+    return rmedian(C, k, d, cnt, rec, n0)
+\end{python}

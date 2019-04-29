@@ -1,0 +1,40 @@
+\select@language {ngerman}
+\contentsline {section}{Eidesstattliche Erkl\IeC {\"a}rung}{4}{Doc-Start}
+\contentsline {section}{\numberline {1}Einleitung}{5}{section.1}
+\contentsline {section}{\numberline {2}Fragile Complexity}{6}{section.2}
+\contentsline {section}{\numberline {3}\textsc {RMinimum} }{8}{section.3}
+\contentsline {subsection}{\numberline {3.1}Algorithmus}{8}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Analyse}{8}{subsection.3.2}
+\contentsline {section}{\numberline {4}\textsc {RMedian} }{11}{section.4}
+\contentsline {subsection}{\numberline {4.1}Algorithmus}{11}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Analyse}{13}{subsection.4.2}
+\contentsline {section}{\numberline {5}Implementierung}{15}{section.5}
+\contentsline {subsection}{\numberline {5.1}\textsc {RMinimum} }{15}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}\textsc {RMedian} }{15}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Modultests}{16}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {5.3.1}PyTest}{16}{subsubsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.2}Jupyter Notebook}{17}{subsubsection.5.3.2}
+\contentsline {subsection}{\numberline {5.4}Werkzeuge}{17}{subsection.5.4}
+\contentsline {section}{\numberline {6}Experimentalf\IeC {\"a}lle}{18}{section.6}
+\contentsline {subsection}{\numberline {6.1}\textsc {RMinimum} }{19}{subsection.6.1}
+\contentsline {subsubsection}{\numberline {6.1.1}Filter}{19}{subsubsection.6.1.1}
+\contentsline {subsubsection}{\numberline {6.1.2}Theorem 4}{23}{subsubsection.6.1.2}
+\contentsline {subsubsection}{\numberline {6.1.3}Theorem 5}{25}{subsubsection.6.1.3}
+\contentsline {subsection}{\numberline {6.2}\textsc {RMedian} }{27}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}Theorem 28}{28}{subsubsection.6.2.1}
+\contentsline {subsubsection}{\numberline {6.2.2}Theorem 29}{29}{subsubsection.6.2.2}
+\contentsline {section}{\numberline {7}Ausblick}{31}{section.7}
+\contentsline {section}{\numberline {8}Data}{32}{section.8}
+\contentsline {section}{\numberline {9}Code}{33}{section.9}
+\contentsline {subsection}{\numberline {9.1}\textsc {RMinimum} }{33}{subsection.9.1}
+\contentsline {subsubsection}{\numberline {9.1.1}Phase 2}{33}{subsubsection.9.1.1}
+\contentsline {subsubsection}{\numberline {9.1.2}Phase 3}{34}{subsubsection.9.1.2}
+\contentsline {subsection}{\numberline {9.2}\textsc {RMedian} }{35}{subsection.9.2}
+\contentsline {subsubsection}{\numberline {9.2.1}Phase 2}{35}{subsubsection.9.2.1}
+\contentsline {subsection}{\numberline {9.3}Werkzeug}{37}{subsection.9.3}
+\contentsline {subsubsection}{\numberline {9.3.1}Server}{37}{subsubsection.9.3.1}
+\contentsline {subsubsection}{\numberline {9.3.2}Fit}{37}{subsubsection.9.3.2}
+\contentsline {section}{Literatur}{39}{lstnumber.-5.42}
+\contentsline {section}{\nonumberline Abbildungsverzeichnis}{40}{lstnumber.-5.42}
+\contentsline {section}{\nonumberline Tabellenverzeichnis}{41}{lstnumber.-5.42}
+\contentsline {section}{Danksagung}{42}{lstnumber.-5.42}

@@ -1,0 +1,38 @@
+\begin{python}
+#   Import
+import random
+import queue
+
+# ==================================================
+#   RMinimum: Phase 2
+def rmin_phase2(L, k, cnt):
+
+    # Generate subsets
+    random.shuffle(L)
+    subsets = [L[i * k:(i + 1) * k] 
+    		for i in range((len(L) + k - 1) // k)]
+
+    # Init M
+    M = [0 for _ in range(len(subsets))]
+
+    # Perfectly balanced tournament tree using a Queue
+    for i in range(len(subsets)):
+        q = queue.Queue()
+
+        for ele in subsets[i]:
+            q.put(ele)
+
+        while q.qsize() > 1:
+            a = q.get()
+            b = q.get()
+
+            if a < b:
+                q.put(a)
+            else:
+                q.put(b)
+            cnt[a] += 1
+            cnt[b] += 1
+        M[i] = q.get()
+
+    return M, cnt
+\end{python}
