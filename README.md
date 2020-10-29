@@ -1,6 +1,6 @@
 # Bachelor Thesis
 
-![GitHub top language](https://img.shields.io/github/languages/top/jfklorenz/bachelor-thesis) ![npm](https://img.shields.io/npm/v/bachelor-thesis) ![npm](https://img.shields.io/npm/dm/bachelor-thesis) ![NPM](https://img.shields.io/npm/l/bachelor-thesis)
+![GitHub top language](https://img.shields.io/github/languages/top/jfklorenz/bachelor-thesis) ![npm](https://img.shields.io/npm/v/bachelor-thesis) ![npm](https://img.shields.io/npm/dm/bachelor-thesis) ![NPM](https://img.shields.io/npm/l/bachelor-thesis) ![GitHub](https://img.shields.io/github/license/jfklorenz/Bachelor-Thesis-ComputerScience)
 
 This project corresponds to the Bachelor thesis of Julian Lorenz at the Goethe-University, Frankfurt am Main.
 
