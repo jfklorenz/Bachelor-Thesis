@@ -1,107 +1,44 @@
-# RMinimum
-This project conains the implementation of the **RMinimum** algorithm
-presented in the Paper *Fragile complexity of some classic comparison based problems*.
+# RMinimum-Algorithm
 
-Included is the algorithm itself and its phases, collected data and test cases.
+![GitHub status](https://img.shields.io/badge/status-release-success) ![GitHub top language](https://img.shields.io/github/languages/top/jfklorenz/python-rminimum) ![Travis](https://travis-ci.org/jfklorenz/RMinimum-Algorithm.svg?branch=master) ![GitHub](https://img.shields.io/github/license/jfklorenz/python-rminimum)
 
-### Directory Tree
-The project uses the following directory tree:
+A **Python** implementation of the **RMinimum algorithm**.
 
-| Folder | Content |
-| ------ | ------ |
-| *Algo* | Executable for the algorithm and phases |
-| *Data* | Collected data from the algorithm saved as *.csv* files |
-| *Test* | Unittests with PyTest and Jupyter |
+The algorithm is presented in the paper **Fragile Complexity of Comparison-Based Algorithms** by Prof. Dr. Ulrich Meyer and others in 2018. 
+A reworked version can can be found on [arXiv.org](https://arxiv.org/abs/1901.02857 "arXiv.org").
+
+It introduces the algorithms *RMinimum* and *RMedian* and also the concept of *fragile complexity*, i.e. the amount of times an element has been compared during the process of the algorithm.
+
+The package was published on **PyPI** and tested on **Travis CI**.
 
 ---
-# Folder: Algo
-The folder *Algo* contains the following all the executables for
-the algorithm and the separat phases.
 
-The code can be run via:
-
-`python filename.py`
-
-The folder contains the following files:
-
-| File | Usage |
-| ------ | ------ |
-| *algo.py* | *RMinimum* Algorithm |
-| *p0.py* | Base case of 3 people |
-| *p1.py* | Phase 1 - Generate W, L |
-| *p2.py* | Phase 2 - Generate filter through L |
-| *p3.py* | Phase 3 - Use filter on W |
-| *p4.py* | Phase 4 - Recurse or finish |
+Folder | Content
+--- | ---
+data | all experimental data as *.csv* files
+jupyter | *Jupyter Notebook* validation and test files  
+src | *Python* source code
+tests | *PyTest* test files
 
 ---
-# Data
-The folder *Data* contains the collected data as *.csv*-files.
 
- Each files contains the four columns **min**, **rem**, **fgc** and **work** containing the respective data. The number of rows corresponds to the amount of repetitions.
+## Algorithm
+In the following we present RMinimum, a randomized recursive algorithm for finding the minimum among n distinct elements. The algorithm has a tuning parameter k(n) controlling the 
+trade-off between the expected fragile complexity f_min(n) of the minimum element and the maximum expected fragile complexity f_rem(n) of the remaining none-minimum elements; if n is clear 
+from the context, we use k instead of k(n). Depending on the choice of k, we obtain interesting trade-offs for the pair <E(f_min(n)) , max E(f_rem(n))> ranging from <O(ε^(−1)*loglog(n)), O(n_ε)> to 
+<O(log(n)/loglog(n)), O(log(n)/loglog(n))>. 
 
-The filenames have the following syntax:
+Given a total ordered set X of n distinct elements, RMinimum performs the following steps:
 
-> filename = rmin_n_k_rep.csv
-
-| Var | Usage |
-| ------ | ------ |
-| *algo* | Name of the algorithm |
-| *n* | n=log2(n0), where n0 is the size of the input set X |
-| *k* | Input value k(n) |
-| *rep* | Number of repetitions for the given case |
-
-The folder also contains the file *data.py*, which prints a overview of all
-the relevant cases for this project.
+1. Randomly group the elements into n/2 pairwise-disjoint pairs and use one comparison for each pair to partition X into two sets L and W of equal size: W contains all winners, i.e. elements that are smaller than their partner. Set L gets the losers, who are larger than their partner and hence cannot be the global minimum.
+2. Partition L into n/k random disjoint subsets L_1 , . . . , L_n/k each of size k and find the minimum element mi in each Li using a perfectly balanced tournament tree (see Theorem 1).
+3. Partition W into n/k random disjoint subsets W_1 , . . . , W_n/k each of size k and filter out all elements in W_i larger than mi to obtain W_0 = U_i {w|w ∈ Wi ∧ w < mi }.
+4. If |W_0| ≤ log2 (n_0) where n0 is the initial problem size, find and return the minimum using a perfectly balanced tournament tree (see Theorem 1). Otherwise recurse on W_0.
 
 ---
-# Test
 
-The folder *Test* contains the two subfolders *PyTest* and *Jupyter*.
+## Complexity 
+1. *Runtime:* RMinimum requires linear work w(n) = O(n).
+2. Let k(n) = n_ε for 0 < ε ≤ 1/2. Then RMinimum requires E(f_min(n)) = O(ε−1loglog(n)) comparisons for the minimum and E(f_rem(n)) = O(n_ε) for the remaining elements.
+3. Let k(n) = logn/loglogn. Then RMinimum requires E(f_min(n)) = O(log(n)/loglog(n)) comparisons for the minimum and E(f_rem(n)) = O(log(n)/loglog(n)) for the remaining elements.
 
-The folder *PyTest* contains the unittests for this project. There are
-randomized as well as customized test cases.
-
-The folder *Jupyter* contains more generic cases to test the fragile
-complexity of the algorithm.
-
-
-## PyTest
-This folder *PyTest* contains the unittests for the algorithm itself as
-well as each phase respectively.
-
-For each case a randomized test was implemented as well as some customized
-tests. The customized tests are chosen to represent extreme scenarios within
-the logic of the algorithm.
-
-The folder contains the following files: &check;
-
-
-
-| File | Rnd | Cst | Tested |
-| ------ | ------ | ------ | ------ |
-| *pytest_algo.py* | &check; | &check; | `return == min(X)`, `n/2 <= work(n) <= 2*n` |
-| *pytest_p1.py* | &check; | &check; | `min(cnt) == max(cnt) == 1`, `len(W) == len(L) == n/2`, `min(X) in W` |
-| *pytest_p2.py* | &check; | &check; | `len(L) == len(M) == n/k`, `max(cnt) == n/k `, `M[i] == min(L[i])` |
-| *pytest_p3.py* | &check; | &check; |  `len(W) == n/k`, `cnt[M[i]] == k`, `min(cnt(W[i]) == max(cnt(W[i]) == 1` |
-| *pytest_p4.py* | &check; | &check; | Recursive call, `min(W') == min(X)`, `max(cnt) = log2(len(W'))`, `sum(cnt) == len(W') - 1` |
-
-
-## Jupyter
-
-The folder *Jupyter* contains in detail testcases for the algorithm and each
-phase respectively.
-
-At the top of each file the user can manually change the input of the
-code below to generate and print out all relevant data.
-
-| File | Usage |
-| ------ | ------ |
-| *jupyter_algo.py* | Explicit result of the algorithm |
-| *jupyter_p1.py* | Results of Phase 1|
-| *jupyter_p2.py* | Results of Phase 2|
-| *jupyter_p3.py* | Results of Phase 3|
-| *jupyter_p4.py* | Results of Phase 4|
-| *jupyter_case_eps.py* | Results for the input *(X, k)* with `k = n**eps` |
-| *jupyter_case_eps_fix_eps.py* | Results for the input *(X, k)* with `k = n**eps` with varying values for *n* for one fix *eps*  |
-| *jupyter_case_eps_fix_n.py* | Results for the input *(X, k)* with `k = n**eps` with varying values for *eps* for one fix *n* |
-| *jupyter_case_loglog.py* | Results for the input *(X, k)* with `k = log2(n)/log2(log2(n))`  |
